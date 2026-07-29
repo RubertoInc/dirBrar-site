@@ -72,29 +72,16 @@ export function CustomImagePointer({ option }: { option: PointerOption }) {
       }
     };
 
-    const endTextSelection = () => {
-      root.classList.remove("custom-image-pointer-selecting");
-      cursor.classList.remove("is-selecting");
-    };
-
     const handlePointerDown = () => {
-      endTextSelection();
       cursor.classList.add("is-clicking");
     };
 
     const handlePointerUp = () => {
       cursor.classList.remove("is-clicking");
-      endTextSelection();
-    };
-
-    const handleSelectStart = () => {
-      root.classList.add("custom-image-pointer-selecting");
-      cursor.classList.add("is-selecting");
     };
 
     const hideCursor = () => {
-      cursor.classList.remove("is-visible", "is-clicking", "is-selecting");
-      root.classList.remove("custom-image-pointer-selecting");
+      cursor.classList.remove("is-visible", "is-clicking");
     };
 
     root.classList.add("custom-image-pointer-enabled");
@@ -108,7 +95,6 @@ export function CustomImagePointer({ option }: { option: PointerOption }) {
     document.addEventListener("pointercancel", handlePointerUp, {
       passive: true,
     });
-    document.addEventListener("selectstart", handleSelectStart);
     root.addEventListener("mouseleave", hideCursor);
     window.addEventListener("blur", hideCursor);
 
@@ -118,7 +104,6 @@ export function CustomImagePointer({ option }: { option: PointerOption }) {
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("pointerup", handlePointerUp);
       document.removeEventListener("pointercancel", handlePointerUp);
-      document.removeEventListener("selectstart", handleSelectStart);
       root.removeEventListener("mouseleave", hideCursor);
       window.removeEventListener("blur", hideCursor);
 

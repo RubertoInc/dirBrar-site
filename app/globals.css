@@ -94,8 +94,8 @@ body {
 }
 
 ::selection {
-  background: var(--orange);
-  color: var(--bone);
+  background: rgba(232, 84, 22, 0.28);
+  color: inherit;
 }
 
 :focus-visible {
@@ -300,10 +300,6 @@ body {
   opacity: 1;
 }
 
-.custom-image-pointer.is-selecting {
-  opacity: 0;
-}
-
 .custom-image-pointer__assembly {
   position: relative;
   width: 100%;
@@ -340,17 +336,6 @@ body {
       none !important;
   }
 
-  html.custom-image-pointer-enabled.custom-image-pointer-selecting,
-  html.custom-image-pointer-enabled.custom-image-pointer-selecting body,
-  html.custom-image-pointer-enabled.custom-image-pointer-selecting body *,
-  html.custom-image-pointer-enabled.custom-image-pointer-selecting
-    body
-    *::before,
-  html.custom-image-pointer-enabled.custom-image-pointer-selecting
-    body
-    *::after {
-    cursor: text !important;
-  }
 }
 
 @keyframes marquee {
