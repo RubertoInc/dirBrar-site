@@ -4,6 +4,7 @@ import { MobileHeader } from "../mobile-header";
 import { MusicVideoGrid } from "./music-video-grid";
 import { musicVideoProjects } from "./music-video-projects";
 import { NarrativeProjectCard } from "./narrative-project-card";
+import { NarrativeComingSoonCard } from "./narrative-coming-soon-card";
 import { getFeaturedNarrativeProject } from "./narrative-projects";
 
 const sectionLinks = [
@@ -98,6 +99,7 @@ export function WorkPage() {
           </div>
 
           <NarrativeProjectCard project={featuredNarrativeProject} />
+          <NarrativeComingSoonCard title="Children of God" />
         </section>
 
         <section
