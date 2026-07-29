@@ -82,8 +82,8 @@ export function SiteFooter() {
             ))}
           </nav>
 
-          <p className="label-sm text-paper/45">
-            © Ruberto Inc. {new Date().getFullYear()}
+          <p className="label-sm text-paper/45 [font-variant-emoji:text]">
+            {"\u00A9\uFE0E"} Ruberto Inc. {new Date().getFullYear()}
           </p>
         </div>
       </div>
