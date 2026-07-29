@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { TextArrow } from "./text-arrow";
 
 type IndexRowProps = {
   number: number;
@@ -71,12 +72,16 @@ export function IndexRow({
         </span>
       </span>
 
-      <span
-        className="mobile-index-row-arrow shrink-0 self-center text-lg text-ink-faint transition-all duration-200 group-hover:text-orange-deep md:text-xl"
-        aria-hidden="true"
-      >
-        {external ? "↗" : "→"}
-      </span>
+      {external ? (
+        <TextArrow className="mobile-index-row-arrow shrink-0 self-center text-lg text-ink-faint transition-all duration-200 group-hover:text-orange-deep md:text-xl" />
+      ) : (
+        <span
+          className="mobile-index-row-arrow shrink-0 self-center text-lg text-ink-faint transition-all duration-200 group-hover:text-orange-deep md:text-xl"
+          aria-hidden="true"
+        >
+          →
+        </span>
+      )}
     </>
   );
 

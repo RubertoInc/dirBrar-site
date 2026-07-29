@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "../../site-header";
+import { TextArrow } from "../../text-arrow";
 import { ScreenerGate } from "../screener-gate";
 import { StillGallery } from "../still-gallery";
 import { getNarrativeProject, narrativeProjects } from "@/lib/projects";
@@ -227,7 +228,7 @@ export default async function ProjectPage({ params }: PageProps) {
                             className="label-sm shrink-0 pb-1 text-ink-faint transition-colors duration-200 group-hover:text-orange-deep"
                             aria-hidden="true"
                           >
-                            IMDb ↗
+                            IMDb <TextArrow />
                           </span>
                         ) : null}
                       </div>
@@ -289,9 +290,7 @@ export default async function ProjectPage({ params }: PageProps) {
                           className="transition-colors duration-200 hover:text-orange-deep"
                         >
                           {credit.name}{" "}
-                          <span aria-hidden="true" className="text-orange-deep">
-                            ↗
-                          </span>
+                          <TextArrow className="text-orange-deep" />
                         </a>
                       ) : (
                         credit.name

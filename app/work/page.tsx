@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "../site-header";
+import { TextArrow } from "../text-arrow";
 import {
   comingSoonProjects,
   musicVideoProjects,
@@ -238,12 +239,7 @@ export default function WorkPage() {
                         {project.artistName}
                       </p>
                     </div>
-                    <span
-                      className="shrink-0 text-2xl text-paper/60 transition-all duration-200 group-hover:translate-x-1 group-hover:text-orange"
-                      aria-hidden="true"
-                    >
-                      ↗
-                    </span>
+                    <TextArrow className="shrink-0 text-2xl text-paper/60 transition-all duration-200 group-hover:translate-x-1 group-hover:text-orange" />
                   </div>
                 </a>
               ))}
