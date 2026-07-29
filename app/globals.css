@@ -327,8 +327,13 @@ body {
 
 @media (pointer: fine) {
   html.custom-image-pointer-enabled,
-  html.custom-image-pointer-enabled * {
-    cursor: none !important;
+  html.custom-image-pointer-enabled body,
+  html.custom-image-pointer-enabled body *,
+  html.custom-image-pointer-enabled body *::before,
+  html.custom-image-pointer-enabled body *::after {
+    cursor:
+      url("/cursors/transparent-cursor.png") 0 0,
+      none !important;
   }
 }
 
