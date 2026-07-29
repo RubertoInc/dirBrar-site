@@ -1,86 +1,128 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
+
 type StillGalleryProps = {
-  galleryImages: string[];
+  images: string[];
+  title: string;
 };
 
-const previewImageCount = 3;
-const mobilePreviewImageIndex = 1;
+/**
+ * Contact-sheet grid with a full-bleed lightbox. Arrow keys and Escape work.
+ */
+export function StillGallery({ images, title }: StillGalleryProps) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-export function StillGallery({ galleryImages }: StillGalleryProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const hasMoreImages = galleryImages.length > previewImageCount;
-  const desktopVisibleImages = isExpanded
-    ? galleryImages
-    : galleryImages.slice(0, previewImageCount);
-  const mobileVisibleImages = isExpanded
-    ? galleryImages
-    : galleryImages.slice(mobilePreviewImageIndex, mobilePreviewImageIndex + 1);
+  const close = useCallback(() => setOpenIndex(null), []);
+
+  const step = useCallback(
+    (direction: 1 | -1) => {
+      setOpenIndex((current) => {
+        if (current === null) return current;
+        return (current + direction + images.length) % images.length;
+      });
+    },
+    [images.length],
+  );
+
+  useEffect(() => {
+    if (openIndex === null) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") close();
+      if (event.key === "ArrowRight") step(1);
+      if (event.key === "ArrowLeft") step(-1);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [openIndex, close, step]);
 
   return (
-    <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.05] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)]">
-      <div className="flex items-center justify-between gap-4">
-        <div className="space-y-1">
-          <p className="eyebrow text-[11px] text-amber-200/80">
-            BTS / Gallery
-          </p>
-          <p className="text-[15px] leading-6 text-stone-100/88 md:text-sm md:text-stone-300/75">
-            Stills and behind-the-scenes frames from PEGGED.
-          </p>
-        </div>
-        <p className="hidden text-[11px] uppercase tracking-[0.22em] text-stone-400 md:block">
-          Production stills
-        </p>
-      </div>
-
-      <div className="mt-5 grid gap-3 md:hidden">
-        {mobileVisibleImages.map((src, index) => (
-          <div
-            key={src}
-            className="relative aspect-[16/10] overflow-hidden rounded-[1.25rem] border border-white/10 bg-black/20"
-          >
-            <Image
-              src={src}
-              alt={`PEGGED production still ${index + 1}`}
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-5 hidden gap-3 md:grid md:grid-cols-3">
-        {desktopVisibleImages.map((src, index) => (
-          <div
-            key={src}
-            className="relative aspect-[16/10] overflow-hidden rounded-[1.25rem] border border-white/10 bg-black/20"
-          >
-            <Image
-              src={src}
-              alt={`PEGGED production still ${index + 1}`}
-              fill
-              className="object-cover"
-              sizes="(min-width: 768px) 22vw, 100vw"
-            />
-          </div>
-        ))}
-      </div>
-
-      {hasMoreImages ? (
-        <div className="mt-5 flex justify-center">
+    <>
+      <div className="grid grid-cols-2 gap-px md:grid-cols-4">
+        {images.map((src, i) => (
           <button
+            key={src}
             type="button"
-            onClick={() => setIsExpanded((current) => !current)}
-            className="rounded-full border border-white/10 bg-black/20 px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-stone-100/80 transition-colors hover:border-amber-200/35 hover:text-amber-100 focus:outline-none focus-visible:border-amber-200/50"
-            aria-expanded={isExpanded}
+            onClick={() => setOpenIndex(i)}
+            className="group grain relative aspect-[3/2] w-full overflow-hidden border border-[var(--rule-dark)] transition-colors duration-200 hover:border-orange"
+            aria-label={`${title} — open still ${i + 1} of ${images.length}`}
           >
-            {isExpanded ? "Show Less" : "Show Full Gallery"}
+            <Image
+              src={src}
+              alt={`${title} still ${i + 1}`}
+              fill
+              sizes="(min-width: 768px) 24vw, 50vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+            <span className="label-sm absolute bottom-0 left-0 bg-olive-deep/85 px-2.5 py-2 text-orange opacity-100 transition-opacity duration-200 md:opacity-0 md:group-hover:opacity-100">
+              {String(i + 1).padStart(2, "0")}
+            </span>
           </button>
+        ))}
+      </div>
+
+      {openIndex !== null ? (
+        <div
+          className="lightbox-shell fixed inset-0 z-[70] flex flex-col bg-olive-deep/98 pt-[env(safe-area-inset-top)]"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${title} stills`}
+        >
+          <div className="flex min-h-14 items-center justify-between gap-4 border-b border-[var(--rule-dark)] px-4 py-2 md:px-8 md:py-4">
+            <p className="label min-w-0 truncate text-orange">
+              {title} — {String(openIndex + 1).padStart(2, "0")} /{" "}
+              {String(images.length).padStart(2, "0")}
+            </p>
+            <button
+              type="button"
+              onClick={close}
+              className="label flex min-h-11 shrink-0 items-center px-2 text-bone transition-colors duration-200 hover:text-orange"
+            >
+              Close ✕
+            </button>
+          </div>
+
+          <div className="relative min-h-0 flex-1">
+            <Image
+              src={images[openIndex]}
+              alt={`${title} still ${openIndex + 1}`}
+              fill
+              sizes="100vw"
+              priority
+              className="object-contain p-4 md:p-10"
+            />
+          </div>
+
+          <div className="flex justify-center border-t border-[var(--rule-dark)] p-4 md:p-6">
+            <div className="btn-group w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => step(-1)}
+                className="btn flex-1 border-[var(--rule-dark-strong)] text-bone transition-colors duration-200 hover:relative hover:z-10 hover:border-orange hover:bg-orange hover:text-bone sm:flex-none"
+                aria-label="Previous still"
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                onClick={() => step(1)}
+                className="btn flex-1 border-[var(--rule-dark-strong)] text-bone transition-colors duration-200 hover:relative hover:z-10 hover:border-orange hover:bg-orange hover:text-bone sm:flex-none"
+                aria-label="Next still"
+              >
+                →
+              </button>
+            </div>
+          </div>
         </div>
       ) : null}
-    </div>
+    </>
   );
 }

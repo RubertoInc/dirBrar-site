@@ -1,46 +1,386 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Saddlebag";
-  src: url("/fonts/Saddlebag.ttf") format("truetype");
-  font-display: swap;
-  font-weight: 900;
-  font-style: normal;
-}
+/* ------------------------------------------------------------------
+   DiR. BRAR — editorial system
+   Desert sand ground, forest green, clay. Emergency orange is an
+   accent only — marks, rules, numbers, hover. Never a slab.
+   Hard edges only.
+   ------------------------------------------------------------------ */
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  /* Grounds — light first. The site reads as paper stock.
+     Never pure white anywhere: --bone is the lightest value on the site and
+     it still carries a touch of warmth. */
+  --paper: #e7dcc6;
+  --paper-warm: #dcccae;
+  --bone: #f9f6f0;
+
+  /* Type on light */
+  --ink: #1c1a14;
+  --ink-soft: #4a4335;
+  --ink-faint: #7a705c;
+
+  /* Forest green */
+  --olive: #31553f;
+  --olive-deep: #193326;
+  --moss: #6f8a72;
+
+  /* Warm sand-brown — replaces the old cool brown */
+  --clay: #96754c;
+  --clay-deep: #5c452b;
+
+  /* Emergency orange. Two values so it stays legible on both grounds. */
+  --orange: #e85416; /* vivid — marks, large type, dark grounds */
+  --orange-deep: #a83505; /* small type on sand (AA at 4.9:1) */
+
+  /* Rules */
+  --rule: rgba(28, 26, 20, 0.22);
+  --rule-strong: rgba(28, 26, 20, 0.48);
+  --rule-dark: rgba(231, 220, 198, 0.22);
+  --rule-dark-strong: rgba(231, 220, 198, 0.46);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-public-sans);
+  --color-paper: var(--paper);
+  --color-paper-warm: var(--paper-warm);
+  --color-bone: var(--bone);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-olive: var(--olive);
+  --color-olive-deep: var(--olive-deep);
+  --color-moss: var(--moss);
+  --color-clay: var(--clay);
+  --color-clay-deep: var(--clay-deep);
+  --color-orange: var(--orange);
+  --color-orange-deep: var(--orange-deep);
+
+  --font-sans: var(--font-archivo);
+  --font-display: var(--font-anton);
+  --font-marker: var(--font-marker);
+  --font-mono: var(--font-space-mono);
+
+  /* Nothing rounds. Ever. */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--paper);
+  min-width: 320px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-archivo), Helvetica, Arial, sans-serif;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
-.eyebrow {
-  margin-left: 1px;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
+/* Kill every inherited radius, including from UA styles. */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
 }
+
+::selection {
+  background: var(--orange);
+  color: var(--bone);
+}
+
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+/* --- type primitives ------------------------------------------------ */
 
 .font-display {
-  font-family: var(--font-display), Arial, Helvetica, sans-serif;
+  font-family: var(--font-anton), "Arial Narrow", Impact, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  /* Tight, but Anton's caps collide below ~0.9. */
+  line-height: 0.92;
 }
 
-.font-saddlebag {
-  font-family: "Saddlebag", var(--font-display), Georgia, serif;
+.font-marker {
+  font-family: var(--font-marker), "Bradley Hand", cursive;
+  font-weight: 400;
+}
+
+/**
+ * The lowercase "i" in DiR. BRAR.
+ *
+ * Permanent Marker is caps-only, so the i is built from two of its own parts:
+ * the capital I set slightly short, with the font's OWN period glyph stacked
+ * above as the tittle. Using the real period means the brush texture and ink
+ * weight match the rest of the lettering — no drawn shapes.
+ *
+ * The height reduction is what actually reads as lowercase; a dot over a
+ * full-height I just looks like a stray mark. 0.78em is as short as it goes
+ * before the letter starts to look shrunken.
+ */
+.letter-i {
+  position: relative;
+  display: inline-block;
+  font-size: 0.78em;
+}
+
+.letter-i .tittle {
+  position: absolute;
+  left: 50%;
+  bottom: 0.72em;
+  transform: translateX(-52%);
+  line-height: 0;
+  pointer-events: none;
+}
+
+.font-mono {
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+}
+
+/* Call-sheet meta label. */
+.label {
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+}
+
+.label-sm {
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  font-size: 0.625rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+}
+
+/**
+ * Boxed label button.
+ *
+ * Two things this fixes, both spacing:
+ * 1. Letter-spacing adds a trailing space AFTER the last glyph, so a centred
+ *    tracked label sits optically left. The right padding is reduced by
+ *    exactly one tracking step to pull it back to centre.
+ * 2. Horizontal padding is ~1.9x the vertical. Tracked uppercase needs more
+ *    room on the sides or it reads cramped and top-heavy.
+ */
+.btn {
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border-width: 1px;
+  border-style: solid;
+  padding: 0.9375rem 1.75rem 0.9375rem;
+  padding-right: calc(1.75rem - 0.24em);
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+/**
+ * Grouped buttons share one hairline instead of sitting a pixel apart.
+ * `gap-px` left a 3px double-border seam that looked accidental.
+ */
+.btn-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.btn-group > .btn + .btn {
+  margin-left: -1px;
+}
+
+.site-header {
+  padding-top: env(safe-area-inset-top);
+}
+
+.lightbox-shell,
+.modal-shell {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Slashed divider between meta items. */
+.slash::after {
+  content: "/";
+  margin: 0 0.6em;
+  color: var(--orange-deep);
+}
+
+.slash:last-child::after {
+  content: "";
+  margin: 0;
+}
+
+/* --- texture -------------------------------------------------------- */
+
+/* 16mm-ish grain over photography. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Sand-and-green grade so every photo sits in one world. */
+.grade {
+  background:
+    linear-gradient(
+      to top,
+      rgba(28, 26, 20, 0.88) 0%,
+      rgba(28, 26, 20, 0.4) 36%,
+      rgba(28, 26, 20, 0.04) 66%
+    ),
+    linear-gradient(
+      100deg,
+      rgba(25, 51, 38, 0.3) 0%,
+      rgba(28, 26, 20, 0.06) 48%,
+      rgba(150, 117, 76, 0.24) 100%
+    );
+}
+
+/* --- motion --------------------------------------------------------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .rise,
+  .marquee-track {
+    animation: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .label {
+    font-size: 0.65625rem;
+    line-height: 1.45;
+    letter-spacing: 0.17em;
+  }
+
+  .label-sm {
+    font-size: 0.59375rem;
+    line-height: 1.4;
+    letter-spacing: 0.2em;
+  }
+
+  .btn {
+    padding-inline: 1rem;
+    padding-right: calc(1rem - 0.17em);
+    font-size: 0.65625rem;
+    letter-spacing: 0.17em;
+  }
+
+  .hero-btn-group {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-btn-group > .btn {
+    width: 100%;
+  }
+
+  .section-jump-nav {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .section-jump-nav > .btn {
+    width: 100%;
+  }
+
+  .section-jump-nav > .btn:nth-child(3) {
+    grid-column: 1 / -1;
+    margin-top: -1px;
+    margin-left: 0;
+  }
+
+  .mobile-index-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.5rem 5.5rem minmax(0, 1fr);
+    column-gap: 0.75rem;
+    padding-right: 1.5rem;
+  }
+
+  .mobile-index-row-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .mobile-index-row:hover .mobile-index-row-arrow {
+    transform: translate(0.2rem, -50%);
+  }
+
+  .mobile-contact-row {
+    min-height: 58px;
+  }
+
+  .project-meta {
+    gap: 0.45rem 0;
+    line-height: 1.45;
+  }
+
+  .project-meta .slash {
+    width: 100%;
+  }
+
+  .project-meta .slash::after {
+    display: none;
+  }
 }

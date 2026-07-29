@@ -1,29 +1,91 @@
 import Link from "next/link";
+import { Wordmark } from "./wordmark";
 
 const footerLinks = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "Index" },
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
 ];
 
+const contactRows = [
+  { label: "Email", value: "dirbrar@gmail.com", href: "mailto:dirbrar@gmail.com" },
+  { label: "Phone", value: "647 705 8334", href: "tel:6477058334" },
+  {
+    label: "Instagram",
+    value: "@damenrb",
+    href: "https://www.instagram.com/damenrb/",
+    external: true,
+  },
+  {
+    label: "LinkedIn",
+    value: "Damen Brar",
+    href: "https://ca.linkedin.com/in/drubertob",
+    external: true,
+  },
+];
+
 export function SiteFooter() {
   return (
-    <footer className="relative z-10 border-t border-white/10 bg-black px-6 py-5 text-[11px] text-neutral-300/80 md:px-10 md:text-xs md:uppercase md:tracking-[0.28em]">
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-4 text-center md:flex-row md:justify-between md:text-left">
-        <nav className="order-1 flex flex-wrap justify-center gap-3 text-[11px] uppercase tracking-[0.24em] md:order-2 md:gap-6 md:text-inherit md:tracking-inherit">
-          {footerLinks.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="transition-colors hover:text-neutral-50 focus:outline-none focus:text-neutral-50"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <p className="order-2 max-w-sm leading-5 md:order-1 md:max-w-none md:leading-normal">
-          Copyright Ruberto Inc. 2026. All rights reserved.
-        </p>
+    <footer id="contact" className="relative z-10 scroll-mt-20 bg-olive-deep">
+      <div className="mx-auto w-full max-w-[1600px] px-5 md:px-10">
+        {/* Call to action slab */}
+        <div className="grid gap-8 border-b border-[var(--rule-dark)] py-12 md:grid-cols-[1.4fr_1fr] md:gap-16 md:py-20">
+          <div>
+            <p className="label pl-[0.12em] text-paper/60">
+              Don&apos;t hesitate to reach out.
+            </p>
+            <h2 className="font-display mt-5 text-[clamp(2.8rem,13vw,5rem)] text-bone md:text-[6.4vw]">
+              Available for
+              <br />
+              <span className="text-orange">directing work.</span>
+            </h2>
+          </div>
+
+          <div className="flex flex-col justify-end">
+            {contactRows.map((row) => (
+              <a
+                key={row.label}
+                href={row.href}
+                target={row.external ? "_blank" : undefined}
+                rel={row.external ? "noopener noreferrer" : undefined}
+                className="mobile-contact-row group grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4 border-t border-[var(--rule-dark)] py-3 transition-[padding,background-color] duration-200 hover:bg-olive hover:px-4 sm:gap-6 sm:py-4"
+              >
+                <span className="label text-paper/60 transition-colors group-hover:text-bone">
+                  {row.label}
+                </span>
+                <span className="font-mono min-w-0 break-words text-right text-[13px] text-bone sm:text-sm md:text-base">
+                  {row.value}
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Colophon */}
+        <div className="flex flex-col gap-6 py-7 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-5">
+            <Wordmark className="text-[20px]" />
+            <span className="label-sm hidden text-paper/55 sm:inline">
+              Toronto, CAN
+            </span>
+          </div>
+
+          <nav className="flex flex-wrap items-center gap-5 md:gap-7">
+            {footerLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="label-sm text-paper/70 transition-colors duration-200 hover:text-orange"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <p className="label-sm text-paper/45">
+            © Ruberto Inc. {new Date().getFullYear()}
+          </p>
+        </div>
       </div>
     </footer>
   );

@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DiR. BRAR
 
-## Getting Started
+Editorial site for Damen R. Brar — writer / director.
 
-First, run the development server:
+## Run it
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Next 16 has hit a Turbopack native-binding issue on Intel Macs in this
+project's sibling repo. If the dev server fails to boot, fall back to webpack:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run dev -- --webpack
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Design system
 
-## Learn More
+Everything lives in `app/globals.css`. The site reads as **paper stock** —
+desert sand ground, warm army green bands, orange as a detail.
 
-To learn more about Next.js, take a look at the following resources:
+| Token | Value | Use |
+| --- | --- | --- |
+| `paper` / `paper-warm` | `#e7dcc6` / `#dcccae` | Primary + alternating grounds |
+| `bone` | `#f9f6f0` | Type on dark bands — lightest value on the site |
+| `ink` / `ink-soft` / `ink-faint` | `#1c1a14` / `#4a4335` / `#7a705c` | Type on paper |
+| `olive` / `olive-deep` | `#4e5a38` / `#2b331f` | Warm army green bands, footer |
+| `clay` / `clay-deep` | `#96754c` / `#5c452b` | Warm sand-brown accents |
+| `orange` | `#e85416` | Marks, large type, dark grounds |
+| `orange-deep` | `#a83505` | Small type on paper (AA at 4.9:1) |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Orange is an accent, never a slab.** Rules, index numbers, hover states,
+the wordmark. If you find yourself filling a whole band with it, don't.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**No pure white, ever.** `bone` (`#f9f6f0`) is the lightest value on the site
+— barely off-white, but never `#fff`.
 
-## Deploy on Vercel
+There are two oranges because one value can't clear AA on both sand and deep
+green. Use `orange-deep` for small type on paper, `orange` everywhere else.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Hard edges only.** `globals.css` zeroes every Tailwind radius token *and*
+applies `border-radius: 0 !important` to `*`, so nothing rounds by accident.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Type
+
+- **Anton** (`.font-display`) — display headlines. Line-height is `0.92`;
+  Anton's caps collide below `0.9`, so don't tighten it further.
+- **Archivo** — body copy.
+- **Space Mono** (`.label`, `.label-sm`) — call-sheet meta labels.
+- **Caveat Brush** (`.font-marker`) — the DiR. BRAR wordmark only.
+
+Caveat Brush is the marker face chosen because it has a **true lowercase "i"
+with a tittle** — Permanent Marker and most other sharpie faces are caps-only
+and render `DiR.` as `DIR.`. It only ships at weight 400, so `.font-marker`
+adds `-webkit-text-stroke: 0.06em currentColor` to reach sharpie weight. If
+you swap the face, check the lowercase `i` first.
+
+### Photography
+
+`.grade` is the shared warm grade for **full-bleed heroes only**. Don't stack
+it under a second scrim — it crushes the image. Cards that need a legible
+title use a single bottom-confined scrim instead (see `app/work/page.tsx`), so
+the top of the frame stays clean.
+
+### Texture
+
+- `.grain` — 16mm-ish noise over photography.
+- `.grade` — the shared warm/olive grade so every photo sits in one world.
+
+## Content
+
+All copy and project data is in [`lib/projects.ts`](lib/projects.ts). Adding a
+narrative project there gives you a row on the home index, a card on `/work`,
+and a statically generated `/work/<slug>` page automatically.
+
+## Private screener
+
+The PEGGED screener link is gated in `app/work/screener-gate.tsx`. The code is
+currently `PEG26`, held client-side — it keeps the URL out of the page markup
+and casual view, but it is **not** real access control. If the screener needs
+to actually stay private, move the check to a server action or route handler
+and keep the video URL out of the client bundle.
+
+## Deploying
+
+Set `NEXT_PUBLIC_SITE_URL` to the live domain so Open Graph image URLs resolve
+absolutely:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
+
+```bash
+npm run build
+```
