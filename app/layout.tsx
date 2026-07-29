@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/favicon2.png",
-    shortcut: "/favicon2.png",
-    apple: "/favicon2.png",
+    icon: "/dirBrar-ProfilePic-2.jpg",
+    shortcut: "/dirBrar-ProfilePic-2.jpg",
+    apple: "/dirBrar-ProfilePic-2.jpg",
   },
 };
 
