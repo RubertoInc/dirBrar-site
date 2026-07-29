@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 
 export const pointerOptions = {
   "Bic4Colour-pointer": {
-    src: "/cursors/Bic4Colour-pointer.png",
+    src: "/cursors/Bic4Colour-pointer-red.png",
     width: 69.6,
     height: 55.2,
     hotspotX: 5.76,
