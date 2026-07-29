@@ -6,7 +6,7 @@ import { Wordmark } from "../wordmark";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Damen R. Brar is a Punjabi-Italian, Tkaronto-based writer and director making bold, character-driven work.",
+    "Damen R. Brar is a Punjabi-Italian, Toronto-based writer and director making bold, character-driven work.",
 };
 
 export default function AboutPage() {
@@ -55,7 +55,7 @@ export default function AboutPage() {
 
               <div className="space-y-5 border-t border-[var(--rule)] pt-6 text-base leading-relaxed text-ink-soft md:text-lg md:leading-relaxed">
                 <p>
-                  Damen is a Punjabi-Italian, Tkaronto-based director seeking to
+                  Damen is a Punjabi-Italian, Toronto-based director seeking to
                   create bold, character-driven stories that strike the balance
                   between technical execution and raw authenticity.
                 </p>
