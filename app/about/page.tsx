@@ -49,7 +49,7 @@ export default function AboutPage() {
                   <span className="slash">Damen R. Brar</span>
                   <span className="slash">Writer</span>
                   <span className="slash">Director</span>
-                  <span className="slash">Toronto</span>
+                  <span className="slash">Producer</span>
                 </p>
               </div>
 
