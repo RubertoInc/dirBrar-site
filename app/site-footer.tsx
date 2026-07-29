@@ -66,7 +66,7 @@ export function SiteFooter() {
           <div className="flex items-center gap-5">
             <Wordmark className="text-[20px]" />
             <span className="label-sm hidden text-paper/55 sm:inline">
-              Toronto, CAN
+              Toronto, Canada
             </span>
           </div>
 
