@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Anton, Archivo, Permanent_Marker, Space_Mono } from "next/font/google";
 import "./globals.css";
+import { CustomImagePointer } from "./custom-image-pointer";
 import { SiteFooter } from "./site-footer";
 
 const archivo = Archivo({
@@ -68,6 +69,7 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col bg-ink text-bone">
         <div className="flex-1">{children}</div>
         <SiteFooter />
+        <CustomImagePointer option="Bic4Colour-pointer" />
       </body>
     </html>
   );
