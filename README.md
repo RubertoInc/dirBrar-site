@@ -2,6 +2,9 @@
 
 Editorial site for Damen R. Brar — writer / director.
 
+Canonical project: `dirBrar-site` on GitHub and locally; `dirbrar-site` on
+Vercel and in package metadata, where names are lowercase.
+
 ## Run it
 
 ```bash
