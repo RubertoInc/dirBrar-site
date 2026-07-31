@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type WordmarkProps = {
@@ -6,17 +7,23 @@ type WordmarkProps = {
   asText?: boolean;
 };
 
-/**
- * DiR. BRAR — the marker logotype, set in Permanent Marker. The face is
- * caps-only so it renders as DIR. BRAR; the text stays "DiR. BRAR" so that's
- * what gets read and indexed. Slight tilt so it reads as drawn on, not typeset.
- */
+/** The hand-drawn DiR. BRAR wordmark, with its original marker texture. */
 export function Wordmark({ className = "", asText = false }: WordmarkProps) {
   const mark = (
     <span
-      className={`font-marker inline-block -rotate-[1.5deg] leading-none text-orange ${className}`}
+      role={asText ? "img" : undefined}
+      aria-label={asText ? "DiR. BRAR" : undefined}
+      className={`inline-block -rotate-[1.5deg] leading-none ${className}`}
     >
-      DiR. BRAR
+      <Image
+        src="/dirbrar-wordmark-orange.svg"
+        alt=""
+        aria-hidden="true"
+        width={1333}
+        height={444}
+        unoptimized
+        className="block h-[2em] w-auto max-w-none"
+      />
     </span>
   );
 

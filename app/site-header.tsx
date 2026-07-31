@@ -46,7 +46,7 @@ export function SiteHeader({ overPhoto = false }: SiteHeaderProps) {
             : "border-[var(--rule)] bg-paper"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-2 px-4 py-2.5 sm:gap-4 sm:px-5 sm:py-3.5 md:px-10 md:py-4">
+      <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-2 px-4 py-2 sm:gap-4 sm:px-5 sm:py-2.5 md:px-10">
         <Wordmark className="text-[22px] md:text-[26px]" />
 
         <nav aria-label="Primary navigation" className="flex items-center gap-1 sm:gap-5 md:gap-8">
@@ -56,7 +56,7 @@ export function SiteHeader({ overPhoto = false }: SiteHeaderProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`label relative flex min-h-11 items-center px-2 transition-colors duration-200 hover:text-orange-deep sm:px-0 ${
+                className={`header-nav-link label relative flex min-h-11 items-center px-2 transition-colors duration-200 hover:text-orange-deep sm:px-0 ${
                   isActive
                     ? "text-orange-deep"
                     : onDark
@@ -75,7 +75,7 @@ export function SiteHeader({ overPhoto = false }: SiteHeaderProps) {
           })}
           <a
             href="#contact"
-            className={`label relative flex min-h-11 items-center px-2 transition-colors duration-200 hover:text-orange-deep sm:px-0 ${
+            className={`header-nav-link label relative flex min-h-11 items-center px-2 transition-colors duration-200 hover:text-orange-deep sm:px-0 ${
               onDark ? "text-bone" : "text-ink"
             }`}
           >
