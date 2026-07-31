@@ -425,8 +425,17 @@ body {
     transform: translate(0.2rem, -50%);
   }
 
-  .mobile-contact-row {
-    min-height: 58px;
+  .footer-contact-row {
+    min-height: 60px;
+  }
+
+  .footer-contact-row:nth-child(odd) {
+    padding-right: 0.75rem;
+  }
+
+  .footer-contact-row:nth-child(even) {
+    border-left: 1px solid var(--rule-dark);
+    padding-left: 0.75rem;
   }
 
   .project-meta {
@@ -446,4 +455,13 @@ body {
 /* Slightly stronger masthead navigation to balance the hand-drawn wordmark. */
 .site-header .header-nav-link {
   font-size: 0.75rem;
+}
+
+/* Keep the copyright mark typographic instead of allowing emoji substitution. */
+.copyright-mark {
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.08em;
+  line-height: 1;
+  letter-spacing: 0;
 }
