@@ -1,3 +1,5 @@
+import { creditTitles } from "./credit-titles";
+
 export type CastMember = {
   character: string;
   actorName: string;
@@ -48,6 +50,7 @@ export type MusicVideoProject = {
   artistName: string;
   year: string;
   role: string;
+  headerCredit?: string;
   seoCredit: string;
   summary: string;
   youtubeId: string;
@@ -55,6 +58,7 @@ export type MusicVideoProject = {
   href: string;
   thumbnailSrc: string;
   thumbnailClassName?: string;
+  heroClassName?: string;
   creditGroups: {
     title: string;
     credits: CrewCredit[];
@@ -120,15 +124,26 @@ export const narrativeProjects: NarrativeProject[] = [
       },
     ],
     crew: [
-      { role: "Writer / Director", name: "Damen R. Brar" },
+      { role: creditTitles.writerDirector, name: "Damen R. Brar" },
       {
         role: "Composer",
         name: "AKILA",
         url: "https://linktr.ee/the_wonder_machine",
       },
-      { role: "Producer / Prod. Design", name: "Vashti Anne" },
-      { role: "DOP", name: "Jacob Lea", url: "https://jlea.ca" },
-      { role: "1st AC", name: "Sarah Sun", url: "https://saraesun.com/" },
+      {
+        role: creditTitles.producerProductionDesign,
+        name: "Vashti Anne",
+      },
+      {
+        role: creditTitles.directorOfPhotography,
+        name: "Jacob Lea",
+        url: "https://jlea.ca",
+      },
+      {
+        role: creditTitles.firstAssistantCamera,
+        name: "Sarah Sun",
+        url: "https://saraesun.com/",
+      },
       {
         role: "Gaffer",
         name: "Marco Ciardullo",
@@ -140,7 +155,11 @@ export const narrativeProjects: NarrativeProject[] = [
         name: "Nicolas Field",
         url: "https://nicolasfield.studio/",
       },
-      { role: "Colorist", name: "Andrew Lea", url: "https://andrewlea.ca" },
+      {
+        role: creditTitles.colourist,
+        name: "Andrew Lea",
+        url: "https://andrewlea.ca",
+      },
       {
         role: "Sound Design / Mixer",
         name: "Alexandra Huynh Do",
@@ -153,7 +172,7 @@ export const narrativeProjects: NarrativeProject[] = [
       },
       { role: "Bass / Guitar", name: "Kaashif Earle" },
       {
-        role: "Saxophone",
+        role: creditTitles.saxophone,
         name: "Ridgeclub",
         url: "https://linktr.ee/ridgeclub",
       },
@@ -183,38 +202,46 @@ export const musicVideoProjects: MusicVideoProject[] = [
     title: "KEY",
     artistName: "Akila & The Wonder Machine",
     year: "2026",
-    role: "Director / Producer",
-    seoCredit: "Directed & Produced by Damen R. Brar",
+    role: creditTitles.directorProducer,
+    seoCredit: "Directed by Damen R. Brar",
     summary:
-      "The official music video for “KEY” by AKILA & The Wonder Machine, directed and produced by Damen R. Brar.",
+      "The official music video for “KEY” by AKILA & The Wonder Machine, directed by Damen R. Brar.",
     youtubeId: "9lj7zQBqVlA",
     publishedAt: "2026-03-06T16:00:06-08:00",
     href: "https://www.youtube.com/watch?v=9lj7zQBqVlA",
     thumbnailSrc: "/KEY-thumbnail-5.png",
     thumbnailClassName: "object-cover object-[75%_30%]",
+    heroClassName:
+      "object-cover object-[10%_30%] md:object-[75%_30%]",
     creditGroups: [
       {
         title: "Crew",
         credits: [
-          { role: "Director", name: "Damen R. Brar" },
+          { role: creditTitles.director, name: "Damen R. Brar" },
           {
-            role: "Co-Director / Prod. Design",
+            role: creditTitles.coDirectorProductionDesign,
             name: "Vashti Anne",
           },
-          { role: "Director of Photography", name: "Mariana Diaz" },
-          { role: "2nd Assistant Director", name: "Camille Lortie" },
-          { role: "1st AC", name: "Ilya Slastnikov" },
-          { role: "2nd AC", name: "Alec Stephens" },
+          {
+            role: creditTitles.directorOfPhotography,
+            name: "Mariana Diaz",
+          },
+          {
+            role: creditTitles.secondAssistantDirector,
+            name: "Camille Lortie",
+          },
+          { role: creditTitles.firstAssistantCamera, name: "Ilya Slastnikov" },
+          { role: creditTitles.secondAssistantCamera, name: "Alec Stephens" },
           { role: "Gaffer", name: "Lily Chiasson" },
           { role: "Best Electric", name: "Karsten Dueck" },
           { role: "Key Grip", name: "Amanda Hacksel" },
           { role: "Grip", name: "Daniel Zlobin" },
           { role: "Swing", name: "Ashvin Lee" },
           {
-            role: "BTS Videographers",
+            role: creditTitles.btsVideo,
             name: "Alex Kuepfer / Manuel Andrés Villasmil",
           },
-          { role: "Production Assistant", name: "Josh Ghebru" },
+          { role: creditTitles.productionAssistant, name: "Josh Ghebru" },
           { role: "Craft", name: "Amy Fan" },
         ],
       },
@@ -232,14 +259,14 @@ export const musicVideoProjects: MusicVideoProject[] = [
       {
         title: "Production",
         credits: [
-          { role: "Executive Producer", name: "AKILA" },
+          { role: creditTitles.executiveProducer, name: "AKILA" },
           {
-            role: "Producers",
+            role: creditTitles.producers,
             name: "Damen R. Brar / Mariana Diaz",
           },
-          { role: "Co-Producer", name: "Haad Bakshi" },
+          { role: creditTitles.coProducer, name: "Haad Bakshi" },
           {
-            role: "Production Companies",
+            role: creditTitles.productionCompanies,
             name: "Ruberto Inc / InColour Films",
           },
         ],
@@ -251,7 +278,7 @@ export const musicVideoProjects: MusicVideoProject[] = [
     title: "Sorry Dad",
     artistName: "Angie Khoury",
     year: "2025",
-    role: "Director",
+    role: creditTitles.director,
     seoCredit: "Directed by Damen R. Brar",
     summary:
       "A chaotic Toronto speed-dating adventure about choosing yourself and loving freely, directed by Damen R. Brar for Angie Khoury.",
@@ -264,18 +291,18 @@ export const musicVideoProjects: MusicVideoProject[] = [
       {
         title: "Crew",
         credits: [
-          { role: "Director", name: "Damen R. Brar" },
-          { role: "Producer / PD", name: "Vashti Anne" },
-          { role: "Director of Photography", name: "Laura King" },
-          { role: "B-Camera", name: "Adrian Crespo" },
+          { role: creditTitles.director, name: "Damen R. Brar" },
+          {
+            role: creditTitles.producerProductionDesign,
+            name: "Vashti Anne",
+          },
+          { role: creditTitles.directorOfPhotography, name: "Laura King" },
+          { role: creditTitles.bCamera, name: "Adrian Crespo" },
           { role: "Gaffer", name: "Tarneem Allati" },
           { role: "Key Grip", name: "Ciaran Campbell" },
-          { role: "Production Assistant", name: "Sofia Abud" },
-          {
-            role: "Editors",
-            name: "Lucia Fella Pallegrino / Angela Khoury",
-          },
-          { role: "Colourist", name: "Andrew Lea" },
+          { role: creditTitles.productionAssistant, name: "Sofia Abud" },
+          { role: "Editor", name: "Lucia Fella Pallegrino" },
+          { role: creditTitles.colourist, name: "Andrew Lea" },
         ],
       },
       {
@@ -301,7 +328,7 @@ export const musicVideoProjects: MusicVideoProject[] = [
     title: "The Devil",
     artistName: "Akila & The Wonder Machine",
     year: "2025",
-    role: "Director",
+    role: creditTitles.director,
     seoCredit: "Directed by Damen R. Brar",
     summary:
       "The official music video for “The Devil” by AKILA & The Wonder Machine, directed by Damen R. Brar and filmed at Evil Empire Studios.",
@@ -313,9 +340,9 @@ export const musicVideoProjects: MusicVideoProject[] = [
       {
         title: "Film Crew",
         credits: [
-          { role: "Director", name: "Damen R. Brar" },
-          { role: "Director of Photography", name: "Laura King" },
-          { role: "Steadicam Operator", name: "Jacob Lea" },
+          { role: creditTitles.director, name: "Damen R. Brar" },
+          { role: creditTitles.directorOfPhotography, name: "Laura King" },
+          { role: creditTitles.steadicamOperator, name: "Jacob Lea" },
           { role: "Gaffer", name: "Rowan Mikolič-O’Rourke" },
           { role: "Photography", name: "Monia Bhutta-Khan" },
           { role: "BTS", name: "Amaan Khan" },
@@ -339,7 +366,8 @@ export const musicVideoProjects: MusicVideoProject[] = [
     title: "Choose U",
     artistName: "Jacob Hayden",
     year: "2022",
-    role: "Executive Producer / Editor",
+    role: creditTitles.executiveProducerEditor,
+    headerCredit: `${creditTitles.executiveProducerEditor} — Damen R. Brar`,
     seoCredit: "Executive Produced & Edited by Damen R. Brar",
     summary:
       "The official music video for “Choose U” by Jacob Hayden, executive produced and edited by Damen R. Brar.",
@@ -351,17 +379,20 @@ export const musicVideoProjects: MusicVideoProject[] = [
       {
         title: "Crew",
         credits: [
-          { role: "Director", name: "Hannah Bennett" },
-          { role: "1st Assistant Director", name: "Emma Ryan" },
-          { role: "Director of Photography", name: "Jacob Lea" },
+          { role: creditTitles.director, name: "Hannah Bennett" },
+          { role: creditTitles.firstAssistantDirector, name: "Emma Ryan" },
+          { role: creditTitles.directorOfPhotography, name: "Jacob Lea" },
           {
-            role: "1st AC",
+            role: creditTitles.firstAssistantCamera,
             name: "Brayden Smith / Tarneem Allati",
           },
           { role: "Gaffer", name: "Rowan Mikolic O’Rourke" },
           { role: "Grips", name: "Tyrell Carter / Scrim" },
-          { role: "Prod. Design", name: "Vashti Anne" },
-          { role: "Executive Producer / Editor", name: "Damen R. Brar" },
+          { role: creditTitles.productionDesign, name: "Vashti Anne" },
+          {
+            role: creditTitles.executiveProducerEditor,
+            name: "Damen R. Brar",
+          },
         ],
       },
     ],
