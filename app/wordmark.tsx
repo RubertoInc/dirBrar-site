@@ -22,7 +22,7 @@ export function Wordmark({ className = "", asText = false }: WordmarkProps) {
         width={1333}
         height={444}
         unoptimized
-        className="block h-[2em] w-auto max-w-none"
+        className="block h-auto w-[6em] max-w-full"
       />
     </span>
   );
