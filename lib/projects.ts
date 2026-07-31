@@ -43,11 +43,22 @@ export type ComingSoonProject = {
 };
 
 export type MusicVideoProject = {
+  slug: string;
   title: string;
   artistName: string;
+  year: string;
+  role: string;
+  seoCredit: string;
+  summary: string;
+  youtubeId: string;
+  publishedAt: string;
   href: string;
   thumbnailSrc: string;
   thumbnailClassName?: string;
+  creditGroups: {
+    title: string;
+    credits: CrewCredit[];
+  }[];
 };
 
 export const narrativeProjects: NarrativeProject[] = [
@@ -168,35 +179,190 @@ export const comingSoonProjects: ComingSoonProject[] = [
 
 export const musicVideoProjects: MusicVideoProject[] = [
   {
+    slug: "key",
     title: "KEY",
     artistName: "Akila & The Wonder Machine",
+    year: "2026",
+    role: "Director / Producer",
+    seoCredit: "Directed & Produced by Damen R. Brar",
+    summary:
+      "The official music video for “KEY” by AKILA & The Wonder Machine, directed and produced by Damen R. Brar.",
+    youtubeId: "9lj7zQBqVlA",
+    publishedAt: "2026-03-06T16:00:06-08:00",
     href: "https://www.youtube.com/watch?v=9lj7zQBqVlA",
     thumbnailSrc: "/KEY-thumbnail-5.png",
     thumbnailClassName: "object-cover object-[75%_30%]",
+    creditGroups: [
+      {
+        title: "Crew",
+        credits: [
+          { role: "Director", name: "Damen R. Brar" },
+          {
+            role: "Co-Director / Production Design",
+            name: "Annie Sinton",
+          },
+          { role: "Director of Photography", name: "Mariana Diaz" },
+          { role: "2nd Assistant Director", name: "Camille Lortie" },
+          { role: "1st AC", name: "Ilya Slastnikov" },
+          { role: "2nd AC", name: "Alec Stephens" },
+          { role: "Gaffer", name: "Lily Chiasson" },
+          { role: "Best Electric", name: "Karsten Dueck" },
+          { role: "Key Grip", name: "Amanda Hacksel" },
+          { role: "Grip", name: "Daniel Zlobin" },
+          { role: "Swing", name: "Ashvin Lee" },
+          {
+            role: "BTS Videographers",
+            name: "Alex Kuepfer / Manuel Andrés Villasmil",
+          },
+          { role: "Production Assistant", name: "Josh Ghebru" },
+          { role: "Craft", name: "Amy Fan" },
+        ],
+      },
+      {
+        title: "Production",
+        credits: [
+          { role: "Executive Producer", name: "AKILA" },
+          {
+            role: "Producers",
+            name: "Damen R. Brar / Mariana Diaz",
+          },
+          { role: "Co-Producer", name: "Haad Bakshi" },
+          {
+            role: "Production Companies",
+            name: "Ruberto Inc / InColour Films",
+          },
+        ],
+      },
+    ],
   },
   {
+    slug: "sorry-dad",
     title: "Sorry Dad",
     artistName: "Angie Khoury",
+    year: "2025",
+    role: "Director",
+    seoCredit: "Directed by Damen R. Brar",
+    summary:
+      "A chaotic Toronto speed-dating adventure about choosing yourself and loving freely, directed by Damen R. Brar for Angie Khoury.",
+    youtubeId: "UZQCQbN6h9w",
+    publishedAt: "2025-11-21T16:06:39-08:00",
     href: "https://www.youtube.com/watch?v=UZQCQbN6h9w",
     thumbnailSrc: "/SorryDad-thumbnail.png",
     thumbnailClassName: "object-cover object-[50%_25%]",
+    creditGroups: [
+      {
+        title: "Crew",
+        credits: [
+          { role: "Director", name: "Damen R. Brar" },
+          { role: "AD / Set Decoration", name: "Vashti Anne" },
+          { role: "Director of Photography", name: "Laura King" },
+          { role: "B-Camera", name: "Adrian Crespo" },
+          { role: "Gaffer", name: "Tarneem Allati" },
+          { role: "Key Grip", name: "Ciaran Campbell" },
+          { role: "Production Assistant", name: "Sofia Abud" },
+          {
+            role: "Editors",
+            name: "Lucia Fella Pallegrino / Angela Khoury",
+          },
+          { role: "Colourist", name: "Andrew Lea" },
+        ],
+      },
+      {
+        title: "Cast",
+        credits: [
+          { role: "Herself", name: "Angie Khoury" },
+          { role: "Hat Cutie", name: "Kay Podgrocka" },
+          { role: "Zen Baddie", name: "Humberly Gonzalez" },
+          { role: "Influencer", name: "Morgana Hinds" },
+          { role: "The Flexer", name: "David Cobo" },
+          { role: "The Ex", name: "Paige Evans" },
+          { role: "Margaret Atwood Enthusiast", name: "Josh Grant" },
+          { role: "Ms. Business", name: "Natasha Austin" },
+          { role: "Rock Star", name: "Tyler Smith" },
+          { role: "Barista", name: "Sierra Paterson" },
+          { role: "Background", name: "Steven Layzell" },
+        ],
+      },
+    ],
   },
   {
+    slug: "the-devil",
     title: "The Devil",
     artistName: "Akila & The Wonder Machine",
+    year: "2025",
+    role: "Director",
+    seoCredit: "Directed by Damen R. Brar",
+    summary:
+      "The official music video for “The Devil” by AKILA & The Wonder Machine, directed by Damen R. Brar and filmed at Evil Empire Studios.",
+    youtubeId: "NB4mljuVgts",
+    publishedAt: "2025-09-15T16:32:34-07:00",
     href: "https://www.youtube.com/watch?v=NB4mljuVgts",
     thumbnailSrc: "/TheDevil-thumbnail_v2.png",
+    creditGroups: [
+      {
+        title: "Film Crew",
+        credits: [
+          { role: "Director", name: "Damen R. Brar" },
+          { role: "Director of Photography", name: "Laura King" },
+          { role: "Steadicam Operator", name: "Jacob Lea" },
+          { role: "Gaffer", name: "Rowan Mikolič-O’Rourke" },
+          { role: "Photography", name: "Monia Bhutta-Khan" },
+          { role: "BTS", name: "Amaan Khan" },
+        ],
+      },
+      {
+        title: "Band",
+        credits: [
+          { role: "Frontman", name: "AKILA" },
+          { role: "Drums", name: "Dondre Morris" },
+          { role: "Rhythm Guitar", name: "Jonalton Jude Hamilton" },
+          { role: "Lead Guitar", name: "Tatsu Uehira" },
+          { role: "Bass", name: "Kaashif Earle" },
+          { role: "Keys", name: "Irvin Chenthil" },
+        ],
+      },
+    ],
   },
   {
+    slug: "choose-u",
     title: "Choose U",
     artistName: "Jacob Hayden",
+    year: "2022",
+    role: "Editor",
+    seoCredit: "Edited by Damen R. Brar",
+    summary:
+      "The official music video for “Choose U” by Jacob Hayden, edited by Damen R. Brar.",
+    youtubeId: "RTdYtzv-wwI",
+    publishedAt: "2022-03-11T12:50:07-08:00",
     href: "https://www.youtube.com/watch?v=RTdYtzv-wwI",
     thumbnailSrc: "/ChooseU-Thumbnail.png",
+    creditGroups: [
+      {
+        title: "Crew",
+        credits: [
+          { role: "Director", name: "Hannah Bennett" },
+          { role: "1st Assistant Director", name: "Emma Ryan" },
+          { role: "Director of Photography", name: "Jacob Lea" },
+          {
+            role: "1st AC",
+            name: "Brayden Smith / Tarneem Allati",
+          },
+          { role: "Gaffer", name: "Rowan Mikolic O’Rourke" },
+          { role: "Grips", name: "Tyrell Carter / Scrim" },
+          { role: "Production Designer", name: "Annie Sinton" },
+          { role: "Editor", name: "Damen R. Brar" },
+        ],
+      },
+    ],
   },
 ];
 
 export function getNarrativeProject(slug: string) {
   return narrativeProjects.find((project) => project.slug === slug);
+}
+
+export function getMusicVideoProject(slug: string) {
+  return musicVideoProjects.find((project) => project.slug === slug);
 }
 
 export function getFeaturedNarrativeProject() {

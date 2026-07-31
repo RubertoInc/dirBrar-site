@@ -35,16 +35,16 @@ const spaceMono = Space_Mono({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ruberto.net";
 const canonicalUrl = siteUrl.replace(/\/$/, "");
 const description =
-  "Damen Brar is a Punjabi-Italian writer and director based in Toronto, creating bold, character-driven narrative, music video, and commercial work.";
+  "Damen R. Brar is a Punjabi-Italian writer and director based in Toronto, creating bold, character-driven narrative, music video, and commercial work.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Damen Brar — Writer & Director | DiR. BRAR",
-    template: "%s | Damen Brar",
+    default: "Damen R. Brar — Writer & Director | DiR. BRAR",
+    template: "%s | Damen R. Brar",
   },
   description,
-  applicationName: "Damen Brar",
+  applicationName: "Damen R. Brar",
   authors: [{ name: "Damen R. Brar", url: canonicalUrl }],
   creator: "Damen R. Brar",
   keywords: [
@@ -60,14 +60,14 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Damen Brar — Writer & Director | DiR. BRAR",
+    title: "Damen R. Brar — Writer & Director | DiR. BRAR",
     description,
     url: "/",
-    siteName: "Damen Brar | DiR. BRAR",
+    siteName: "Damen R. Brar | DiR. BRAR",
     images: [
       {
         url: "/hero.jpg",
-        alt: "Damen Brar directing on set",
+        alt: "Damen R. Brar directing on set",
       },
     ],
     locale: "en_CA",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Damen Brar — Writer & Director | DiR. BRAR",
+    title: "Damen R. Brar — Writer & Director | DiR. BRAR",
     description,
     images: ["/hero.jpg"],
   },
@@ -111,7 +111,7 @@ export default function RootLayout({
                   "@type": "WebSite",
                   "@id": `${canonicalUrl}/#website`,
                   url: canonicalUrl,
-                  name: "Damen Brar",
+                  name: "Damen R. Brar",
                   alternateName: "DiR. BRAR",
                   description,
                   inLanguage: "en-CA",

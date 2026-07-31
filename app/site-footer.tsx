@@ -18,7 +18,7 @@ const contactRows = [
   },
   {
     label: "LinkedIn",
-    value: "Damen Brar",
+    value: "Damen R. Brar",
     href: "https://ca.linkedin.com/in/drubertob",
     external: true,
   },

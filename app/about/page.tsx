@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Damen R. Brar is a Punjabi-Italian, Toronto-based writer and director making bold, character-driven work.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {
