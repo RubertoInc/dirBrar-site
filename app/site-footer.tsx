@@ -27,33 +27,33 @@ const contactRows = [
 export function SiteFooter() {
   return (
     <footer id="contact" className="relative z-10 scroll-mt-20 bg-olive-deep">
-      <div className="mx-auto w-full max-w-[1600px] px-5 md:px-10">
+      <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-5 md:px-10">
         {/* Call to action slab */}
-        <div className="grid gap-8 border-b border-[var(--rule-dark)] py-12 md:grid-cols-[1.4fr_1fr] md:gap-16 md:py-20">
+        <div className="grid gap-6 border-b border-[var(--rule-dark)] py-8 sm:gap-8 sm:py-12 md:grid-cols-[1.4fr_1fr] md:gap-16 md:py-20">
           <div>
             <p className="label pl-[0.12em] text-paper/60">
               Don&apos;t hesitate to reach out.
             </p>
-            <h2 className="font-display mt-5 text-[clamp(2.8rem,13vw,5rem)] text-bone md:text-[6.4vw]">
+            <h2 className="font-display mt-3 text-[clamp(2.5rem,12vw,5rem)] text-bone sm:mt-5 md:text-[6.4vw]">
               Available for
               <br />
               <span className="text-orange">directing work.</span>
             </h2>
           </div>
 
-          <div className="flex flex-col justify-end">
+          <div className="footer-contact-grid grid grid-cols-2 justify-end md:flex md:flex-col">
             {contactRows.map((row) => (
               <a
                 key={row.label}
                 href={row.href}
                 target={row.external ? "_blank" : undefined}
                 rel={row.external ? "noopener noreferrer" : undefined}
-                className="mobile-contact-row group grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4 border-t border-[var(--rule-dark)] py-3 transition-[padding,background-color] duration-200 hover:bg-olive hover:px-4 sm:gap-6 sm:py-4"
+                className="footer-contact-row group flex min-w-0 flex-col items-start justify-center gap-1.5 border-t border-[var(--rule-dark)] py-2.5 transition-[padding,background-color] duration-200 hover:bg-olive md:grid md:grid-cols-[auto_minmax(0,1fr)] md:items-center md:gap-6 md:py-4 md:hover:px-4"
               >
                 <span className="label text-paper/60 transition-colors group-hover:text-bone">
                   {row.label}
                 </span>
-                <span className="font-mono min-w-0 break-words text-right text-[13px] text-bone sm:text-sm md:text-base">
+                <span className="font-mono min-w-0 break-words text-left text-[11px] text-bone sm:text-xs md:text-right md:text-base">
                   {row.value}
                 </span>
               </a>
@@ -62,15 +62,15 @@ export function SiteFooter() {
         </div>
 
         {/* Colophon */}
-        <div className="flex flex-col gap-6 py-7 md:flex-row md:items-center md:justify-between">
+        <div className="grid grid-cols-[auto_1fr] items-center gap-x-4 gap-y-4 py-5 md:flex md:flex-row md:justify-between md:gap-6 md:py-7">
           <div className="flex items-center gap-5">
-            <Wordmark className="text-[20px]" />
+            <Wordmark className="text-[16px] md:text-[20px]" />
             <span className="label-sm hidden text-paper/55 sm:inline">
               Toronto, Canada
             </span>
           </div>
 
-          <nav className="flex flex-wrap items-center gap-5 md:gap-7">
+          <nav className="flex flex-wrap items-center justify-end gap-4 md:gap-7">
             {footerLinks.map((item) => (
               <Link
                 key={item.href}
@@ -82,8 +82,9 @@ export function SiteFooter() {
             ))}
           </nav>
 
-          <p className="label-sm text-paper/45 [font-variant-emoji:text]">
-            {"\u00A9\uFE0E"} Ruberto Inc. {new Date().getFullYear()}
+          <p className="label-sm col-span-2 border-t border-[var(--rule-dark)] pt-3 text-center text-paper/45 [font-variant-emoji:text] md:col-span-1 md:border-0 md:pt-0 md:text-left">
+            <span className="copyright-mark">©</span> Ruberto Inc.{" "}
+            {new Date().getFullYear()}
           </p>
         </div>
       </div>
