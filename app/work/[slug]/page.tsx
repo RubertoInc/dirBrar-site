@@ -6,39 +6,91 @@ import { SiteHeader } from "../../site-header";
 import { TextArrow } from "../../text-arrow";
 import { ScreenerGate } from "../screener-gate";
 import { StillGallery } from "../still-gallery";
-import { getNarrativeProject, narrativeProjects } from "@/lib/projects";
+import { MusicVideoDetail } from "./music-video-detail";
+import {
+  getMusicVideoProject,
+  getNarrativeProject,
+  musicVideoProjects,
+  narrativeProjects,
+} from "@/lib/projects";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return narrativeProjects.map((project) => ({ slug: project.slug }));
+  return [...narrativeProjects, ...musicVideoProjects].map((project) => ({
+    slug: project.slug,
+  }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getNarrativeProject(slug);
+  const narrativeProject = getNarrativeProject(slug);
 
-  if (!project) {
-    return { title: "Not found" };
+  if (narrativeProject) {
+    const title = `${narrativeProject.title} — ${narrativeProject.format} Written & Directed by Damen R. Brar`;
+
+    return {
+      title: { absolute: title },
+      description: narrativeProject.logline,
+      alternates: {
+        canonical: `/work/${narrativeProject.slug}`,
+      },
+      openGraph: {
+        title,
+        description: narrativeProject.logline,
+        url: `/work/${narrativeProject.slug}`,
+        images: narrativeProject.heroStillSrc
+          ? [narrativeProject.heroStillSrc]
+          : undefined,
+      },
+    };
   }
 
-  return {
-    title: project.title,
-    description: project.logline,
-    openGraph: {
-      title: `${project.title} — DiR. BRAR`,
-      description: project.logline,
-      images: project.heroStillSrc ? [project.heroStillSrc] : undefined,
-    },
-  };
+  const musicVideoProject = getMusicVideoProject(slug);
+
+  if (musicVideoProject) {
+    const title = `${musicVideoProject.title} — Music Video ${musicVideoProject.seoCredit}`;
+
+    return {
+      title: { absolute: title },
+      description: musicVideoProject.summary,
+      alternates: {
+        canonical: `/work/${musicVideoProject.slug}`,
+      },
+      openGraph: {
+        title,
+        description: musicVideoProject.summary,
+        url: `/work/${musicVideoProject.slug}`,
+        type: "video.other",
+        images: [musicVideoProject.thumbnailSrc],
+        videos: [
+          `https://www.youtube-nocookie.com/embed/${musicVideoProject.youtubeId}`,
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description: musicVideoProject.summary,
+        images: [musicVideoProject.thumbnailSrc],
+      },
+    };
+  }
+
+  return { title: "Not found" };
 }
 
 export default async function ProjectPage({ params }: PageProps) {
   const { slug } = await params;
+  const musicVideoProject = getMusicVideoProject(slug);
+
+  if (musicVideoProject) {
+    return <MusicVideoDetail project={musicVideoProject} />;
+  }
+
   const project = getNarrativeProject(slug);
 
   if (!project) {

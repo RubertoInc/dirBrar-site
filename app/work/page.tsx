@@ -12,7 +12,10 @@ import {
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Selected narrative, music video, and commercial work directed by Damen R. Brar.",
+    "Selected narrative, music video, and commercial work by writer-director Damen R. Brar.",
+  alternates: {
+    canonical: "/work",
+  },
 };
 
 const sections = [
@@ -79,7 +82,8 @@ export default function WorkPage() {
           <div className="mt-6 grid gap-6 border-t border-[var(--rule-strong)] pt-5 md:grid-cols-[1fr_auto] md:items-end">
             <p className="max-w-2xl text-base leading-relaxed text-ink-soft md:text-xl md:leading-relaxed">
               Each project is a special collaboration of beautiful minds.
-              Scroll to see original work directed, produced, or written by me.
+              Scroll to see original work directed, produced, written, or
+              edited by me.
             </p>
             <nav aria-label="Jump to work category" className="section-jump-nav btn-group">
               {sections.map((section) => (
@@ -203,17 +207,15 @@ export default function WorkPage() {
             <SectionHeading
               index="[ 02 ]"
               title="Music Video"
-              credit="Produced & Directed"
+              credit="Direction / Production / Editorial"
               onDark
             />
 
             <div className="mt-10 grid gap-px md:mt-14 md:grid-cols-2">
               {musicVideoProjects.map((project, i) => (
-                <a
-                  key={project.href}
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  key={project.slug}
+                  href={`/work/${project.slug}`}
                   className="group block border border-[var(--rule-dark)] transition-colors duration-300 hover:border-orange"
                 >
                   <div className="grain relative aspect-video w-full overflow-hidden">
@@ -241,7 +243,7 @@ export default function WorkPage() {
                     </div>
                     <TextArrow className="shrink-0 text-2xl text-paper/60 transition-all duration-200 group-hover:translate-x-1 group-hover:text-orange" />
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

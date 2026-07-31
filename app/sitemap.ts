@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { narrativeProjects } from "@/lib/projects";
+import { musicVideoProjects, narrativeProjects } from "@/lib/projects";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
@@ -18,5 +18,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...projectRoutes];
+  const musicVideoRoutes = musicVideoProjects.map((project) => ({
+    url: `${siteUrl}/work/${project.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...projectRoutes, ...musicVideoRoutes];
 }
