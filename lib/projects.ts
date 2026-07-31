@@ -219,6 +219,17 @@ export const musicVideoProjects: MusicVideoProject[] = [
         ],
       },
       {
+        title: "Band / Talent",
+        credits: [
+          { role: "Starring", name: "AKILA / Joelle Rose" },
+          { role: "Lead Guitar", name: "Adam Musmar" },
+          { role: "Rhythm Guitar", name: "Jonalton Jude Hamilton" },
+          { role: "Bass", name: "Kaashif Earle" },
+          { role: "Keys", name: "Irvin Chenthil" },
+          { role: "Drums", name: "Dondre Morris" },
+        ],
+      },
+      {
         title: "Production",
         credits: [
           { role: "Executive Producer", name: "AKILA" },
