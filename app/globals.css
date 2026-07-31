@@ -442,3 +442,8 @@ body {
     display: none;
   }
 }
+
+/* Slightly stronger masthead navigation to balance the hand-drawn wordmark. */
+.site-header .header-nav-link {
+  font-size: 0.75rem;
+}
