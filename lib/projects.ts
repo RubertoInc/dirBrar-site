@@ -98,7 +98,7 @@ export const narrativeProjects: NarrativeProject[] = [
         character: "Brett",
         actorName: "Brennan Clost",
         imdbUrl: "https://www.imdb.com/name/nm5250195/",
-        headshotSrc: "/brennan-profile.png",
+        headshotSrc: "/brennanClost-HeadShot.png",
       },
       {
         character: "Adrean",
