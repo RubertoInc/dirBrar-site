@@ -212,15 +212,14 @@ export default function Page() {
 
               {musicVideoProjects.map((project, i) => (
                 <IndexRow
-                  key={project.href}
+                  key={project.slug}
                   number={
                     narrativeProjects.length + comingSoonProjects.length + i + 1
                   }
                   title={project.title}
                   meta="Music Video"
                   note={project.artistName}
-                  href={project.href}
-                  external
+                  href={`/work/${project.slug}`}
                   thumbnailSrc={project.thumbnailSrc}
                   thumbnailClassName={project.thumbnailClassName}
                 />
