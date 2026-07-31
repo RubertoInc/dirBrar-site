@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CreditName } from "../../credit-name";
 import { SiteHeader } from "../../site-header";
 import { TextArrow } from "../../text-arrow";
 import type { MusicVideoProject } from "@/lib/projects";
@@ -46,7 +47,7 @@ export function MusicVideoDetail({
               fill
               priority
               sizes="100vw"
-              className={`${project.thumbnailClassName ?? "object-cover"} scale-[1.01]`}
+              className={`${project.heroClassName ?? project.thumbnailClassName ?? "object-cover"} scale-[1.01]`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-ink/15" />
             <div className="absolute inset-0 bg-orange/10 mix-blend-color" />
@@ -73,7 +74,9 @@ export function MusicVideoDetail({
                 <p className="text-xl text-bone md:text-2xl">
                   {project.artistName}
                 </p>
-                <p className="label mt-3 text-paper/65">{project.seoCredit}</p>
+                <p className="label mt-3 text-paper/65">
+                  {project.headerCredit ?? project.seoCredit}
+                </p>
               </div>
             </div>
           </div>
@@ -149,7 +152,7 @@ export function MusicVideoDetail({
                         {credit.role}
                       </dt>
                       <dd className="min-w-0 break-words text-right text-[15px] leading-snug text-ink md:text-base">
-                        {credit.name}
+                        <CreditName credit={credit} />
                       </dd>
                     </div>
                   ))}

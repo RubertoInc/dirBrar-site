@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CreditName } from "../../credit-name";
 import { SiteHeader } from "../../site-header";
 import { TextArrow } from "../../text-arrow";
 import { ScreenerGate } from "../screener-gate";
@@ -13,6 +14,7 @@ import {
   musicVideoProjects,
   narrativeProjects,
 } from "@/lib/projects";
+import { getOutboundLink } from "@/lib/credit-links";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -250,6 +252,10 @@ export default async function ProjectPage({ params }: PageProps) {
 
               <div className="mt-8 grid gap-px sm:grid-cols-2 md:mt-12 md:grid-cols-3">
                 {project.cast.map((member) => {
+                  const memberUrl = getOutboundLink(
+                    member.actorName,
+                    member.imdbUrl,
+                  );
                   const card = (
                     <>
                       <div className="grain relative aspect-[4/5] w-full overflow-hidden">
@@ -275,7 +281,7 @@ export default async function ProjectPage({ params }: PageProps) {
                             {member.actorName}
                           </p>
                         </div>
-                        {member.imdbUrl ? (
+                        {memberUrl ? (
                           <span
                             className="label-sm shrink-0 pb-1 text-ink-faint transition-colors duration-200 group-hover:text-orange-deep"
                             aria-hidden="true"
@@ -287,10 +293,10 @@ export default async function ProjectPage({ params }: PageProps) {
                     </>
                   );
 
-                  return member.imdbUrl ? (
+                  return memberUrl ? (
                     <a
                       key={member.actorName}
-                      href={member.imdbUrl}
+                      href={memberUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group border border-[var(--rule)] transition-colors duration-300 hover:border-orange"
@@ -334,19 +340,7 @@ export default async function ProjectPage({ params }: PageProps) {
                       {credit.role}
                     </dt>
                     <dd className="min-w-0 break-words text-right text-[15px] leading-snug text-ink md:text-base">
-                      {credit.url ? (
-                        <a
-                          href={credit.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="transition-colors duration-200 hover:text-orange-deep"
-                        >
-                          {credit.name}{" "}
-                          <TextArrow className="text-orange-deep" />
-                        </a>
-                      ) : (
-                        credit.name
-                      )}
+                      <CreditName credit={credit} />
                     </dd>
                   </div>
                 ))}
