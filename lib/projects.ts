@@ -126,7 +126,7 @@ export const narrativeProjects: NarrativeProject[] = [
         name: "AKILA",
         url: "https://linktr.ee/the_wonder_machine",
       },
-      { role: "Producer / Prod Design", name: "Vashti Anne" },
+      { role: "Producer / Prod. Design", name: "Vashti Anne" },
       { role: "DOP", name: "Jacob Lea", url: "https://jlea.ca" },
       { role: "1st AC", name: "Sarah Sun", url: "https://saraesun.com/" },
       {
@@ -198,8 +198,8 @@ export const musicVideoProjects: MusicVideoProject[] = [
         credits: [
           { role: "Director", name: "Damen R. Brar" },
           {
-            role: "Co-Director / Production Design",
-            name: "Annie Sinton",
+            role: "Co-Director / Prod. Design",
+            name: "Vashti Anne",
           },
           { role: "Director of Photography", name: "Mariana Diaz" },
           { role: "2nd Assistant Director", name: "Camille Lortie" },
@@ -349,7 +349,7 @@ export const musicVideoProjects: MusicVideoProject[] = [
           },
           { role: "Gaffer", name: "Rowan Mikolic O’Rourke" },
           { role: "Grips", name: "Tyrell Carter / Scrim" },
-          { role: "Production Designer", name: "Annie Sinton" },
+          { role: "Prod. Design", name: "Vashti Anne" },
           { role: "Executive Producer / Editor", name: "Damen R. Brar" },
         ],
       },
