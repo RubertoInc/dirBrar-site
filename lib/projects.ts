@@ -265,7 +265,7 @@ export const musicVideoProjects: MusicVideoProject[] = [
         title: "Crew",
         credits: [
           { role: "Director", name: "Damen R. Brar" },
-          { role: "AD / Set Decoration", name: "Vashti Anne" },
+          { role: "Producer / PD", name: "Vashti Anne" },
           { role: "Director of Photography", name: "Laura King" },
           { role: "B-Camera", name: "Adrian Crespo" },
           { role: "Gaffer", name: "Tarneem Allati" },
