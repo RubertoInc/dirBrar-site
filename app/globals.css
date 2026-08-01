@@ -218,6 +218,11 @@ body {
 }
 
 /* Slashed divider between meta items. */
+.slash {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .slash::after {
   content: "/";
   margin: 0 0.6em;
@@ -404,6 +409,12 @@ body {
     grid-column: 1 / -1;
     margin-top: -1px;
     margin-left: 0;
+  }
+
+  .work-card-hook {
+    white-space: nowrap;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
   }
 
   .mobile-index-row {

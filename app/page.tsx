@@ -253,9 +253,8 @@ export default function Page() {
                 <span className="text-orange" aria-hidden="true">
                   “
                 </span>
-                I truly believe the power of film is its ability to transform
-                people&apos;s preconceived notions about life. Through that
-                frame they really can walk a mile...
+                Film&apos;s power is in its ability to transport the audience
+                and transform their perspective on the world around them.
                 <span className="text-orange" aria-hidden="true">
                   ”
                 </span>

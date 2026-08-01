@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type WordmarkProps = {
   className?: string;
@@ -9,6 +12,7 @@ type WordmarkProps = {
 
 /** The hand-drawn DiR. BRAR wordmark, with its original marker texture. */
 export function Wordmark({ className = "", asText = false }: WordmarkProps) {
+  const pathname = usePathname();
   const mark = (
     <span
       role={asText ? "img" : undefined}
@@ -35,6 +39,12 @@ export function Wordmark({ className = "", asText = false }: WordmarkProps) {
     <Link
       href="/"
       aria-label="DiR. BRAR — home"
+      onClick={(event) => {
+        if (pathname === "/") {
+          event.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }}
       className="inline-block transition-transform duration-200 hover:-translate-y-px"
     >
       {mark}

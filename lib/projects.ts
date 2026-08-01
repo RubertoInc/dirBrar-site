@@ -29,6 +29,7 @@ export type NarrativeProject = {
   posterNote: string;
   heroStillSrc?: string;
   heroStillClassName?: string;
+  workCardClassName?: string;
   heroStillNote: string;
   galleryImages: string[];
   cast: CastMember[];
@@ -81,6 +82,8 @@ export const narrativeProjects: NarrativeProject[] = [
     posterNote: "PEGGED poster",
     heroStillSrc: "/pegged-gallery/DSCF8473.jpg",
     heroStillClassName: "object-cover object-[50%_42%]",
+    workCardClassName:
+      "scale-[1.23] object-cover object-[58%_34%] sm:scale-100 sm:object-[50%_42%]",
     heroStillNote: "PEGGED — hero still",
     galleryImages: [
       "/pegged-gallery/DSCF8502.jpg",

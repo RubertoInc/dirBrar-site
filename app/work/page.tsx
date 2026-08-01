@@ -55,7 +55,7 @@ function SectionHeading({
           {title}
         </h2>
       </div>
-      <p className={`label max-w-[46%] pb-1 text-right sm:max-w-none sm:pb-2 ${onDark ? "text-paper/70" : "text-ink-soft"}`}>
+      <p className={`label whitespace-nowrap pb-1 text-right sm:pb-2 ${onDark ? "text-paper/70" : "text-ink-soft"}`}>
         {credit}
       </p>
     </div>
@@ -123,7 +123,7 @@ export default function WorkPage() {
                         alt={project.heroStillNote}
                         fill
                         sizes="(min-width: 768px) 90vw, 100vw"
-                        className={`${project.heroStillClassName ?? "object-cover"} transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
+                        className={`${project.workCardClassName ?? project.heroStillClassName ?? "object-cover"} transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
                       />
                     ) : null}
                     {/* Scrim confined to the type band — the top of the frame
@@ -132,7 +132,9 @@ export default function WorkPage() {
 
                     <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-5 p-4 sm:flex-row sm:items-end sm:justify-between sm:p-5 md:p-8">
                       <div className="min-w-0">
-                        <p className="label mb-3 line-clamp-2 text-orange">{project.hook}</p>
+                        <p className="work-card-hook label mb-3 text-orange">
+                          {project.hook}
+                        </p>
                         <h3 className="font-display text-[clamp(3.5rem,18vw,5.5rem)] leading-[0.82] text-bone md:text-[8vw]">
                           {project.title}
                         </h3>
@@ -207,7 +209,7 @@ export default function WorkPage() {
             <SectionHeading
               index="[ 02 ]"
               title="Music Video"
-              credit="Direction / Production / Editorial"
+              credit="Dir / Prod / Edit"
               onDark
             />
 

@@ -11,7 +11,7 @@ export function MusicVideoDetail({
   project: MusicVideoProject;
 }) {
   const siteUrl = (
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ruberto.net"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://dirbrar.com"
   ).replace(/\/$/, "");
   const projectUrl = `${siteUrl}/work/${project.slug}`;
 

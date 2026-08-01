@@ -3,7 +3,7 @@ import { musicVideoProjects, narrativeProjects } from "@/lib/projects";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-  "https://www.ruberto.net";
+  "https://dirbrar.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = ["", "/work", "/about"].map((path, index) => ({

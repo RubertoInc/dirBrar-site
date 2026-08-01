@@ -32,7 +32,7 @@ const spaceMono = Space_Mono({
 });
 
 // Set NEXT_PUBLIC_SITE_URL to the real domain so OG images resolve absolutely.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ruberto.net";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://dirbrar.com";
 const canonicalUrl = siteUrl.replace(/\/$/, "");
 const description =
   "Damen R. Brar is a Punjabi-Italian writer and director based in Toronto, creating bold, character-driven narrative, music video, and commercial work.";
